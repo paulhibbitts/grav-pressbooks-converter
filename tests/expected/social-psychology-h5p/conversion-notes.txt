@@ -15,8 +15,8 @@ Structure
   Front matter:   6 page(s)
   Parts/sections: 12
   Chapters:       62 page(s)
-  Back matter:    3 page(s)
-  Total:          71 page(s)
+  Back matter:    4 page(s)
+  Total:          72 page(s)
 
 Next Steps
 ----------

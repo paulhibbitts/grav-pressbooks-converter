@@ -288,6 +288,57 @@ class Parser
                 'html'  => $this->dom->saveHTML($ugc),
             ];
         }
+
+        // The book's copyright page, as the last page of its back matter (out of the reading path): how to credit
+        // the book, a citation, and credits for parts under other licences, such as the cover
+        $copyright = $this->copyrightPage();
+        if ($copyright !== null) {
+            $this->backMatters[] = $copyright;
+        }
+    }
+
+    // Pressbooks' copyright page (its id is "copyright-page"), without the licence icon (the licence is written out
+    // beside it). Returns null when there isn't one, or when it only has the licence sentence every page's footer
+    // already shows.
+    private function copyrightPage(): ?array
+    {
+        $page = $this->xpath->query("//div[@id='copyright-page']")->item(0);
+        if ($page === null) {
+            return null;
+        }
+        $ugc = $this->xpath->query(".//*[{$this->xc('ugc')}]", $page)->item(0) ?? $page;
+
+        // anything beyond the licence? The page is only worth adding when it says more, such as how to credit the
+        // book, a citation or credits for its cover – not when its only other text is the licence again, in one
+        // "… is licensed under …" sentence
+        $extraBlocks = [];
+        foreach ($ugc->childNodes as $child) {
+            if ($child instanceof \DOMElement && str_contains(' ' . $child->getAttribute('class') . ' ', ' license-attribution ')) {
+                continue;
+            }
+            if (trim($child->textContent) !== '') {
+                $extraBlocks[] = trim($child->textContent);
+            }
+        }
+        if (count($extraBlocks) === 0) {
+            return null;
+        }
+        if (count($extraBlocks) === 1 && preg_match('/\bis licensed under\b/i', $extraBlocks[0])) {
+            return null;
+        }
+
+        foreach (iterator_to_array($this->xpath->query(".//*[{$this->xc('license-attribution')}]//img", $ugc)) as $icon) {
+            $paragraph = $icon->parentNode;
+            $paragraph->removeChild($icon);
+            if (trim($paragraph->textContent) === '' && $paragraph->parentNode !== null) {
+                $paragraph->parentNode->removeChild($paragraph);
+            }
+        }
+        return [
+            'id'    => 'copyright-page',
+            'title' => 'Copyright',
+            'html'  => $this->dom->saveHTML($ugc),
+        ];
     }
 
     private function cleanTitleWrap(\DOMNode $node): void
