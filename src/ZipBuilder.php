@@ -238,10 +238,10 @@ class ZipBuilder
                 : $p->bookLicense;
             $metaParts[] = '**License:** ' . $licenseText;
         }
-        $pageCount = count($p->frontMatters)
-                   + array_sum(array_map(fn($part) => count($part['chapters']), $p->parts))
-                   + count($p->backMatters);
-        if ($pageCount > 0) {
+        $pageCount = count($p->frontMatters) + $this->chapterCount() + count($p->backMatters);
+        if ($pageCount === 1) {
+            $metaParts[] = '**1 page**';
+        } elseif ($pageCount > 1) {
             $metaParts[] = '**' . $pageCount . ' pages**';
         }
 
@@ -304,6 +304,11 @@ class ZipBuilder
             $this->harvestH5pEmbeds($fm['title']);
             $this->noteTablePluginShortcodes($fm['title'], $content);
             $pages[] = [$fm['title'], $content];
+        }
+
+        // a book without front matter gets no Front Matter section (it would be an empty card on the guide's home)
+        if (count($pages) === 0) {
+            return;
         }
 
         $this->writeSection(
@@ -1025,11 +1030,26 @@ class ZipBuilder
         return null;
     }
 
+    // The book's chapters: those in its parts, plus any chapter that is a section itself (a book without parts,
+    // whose chapters are in Pressbooks' hidden "Main Body" part)
+    private function chapterCount(): int
+    {
+        $count = 0;
+        foreach ($this->parser->parts as $part) {
+            if (count($part['chapters']) > 0) {
+                $count += count($part['chapters']);
+            } elseif ($part['html'] !== '') {
+                $count += 1;
+            }
+        }
+        return $count;
+    }
+
     private function buildConversionNotes(): void
     {
         $p = $this->parser;
 
-        $chapterCount = array_sum(array_map(fn($part) => count($part['chapters']), $p->parts));
+        $chapterCount = $this->chapterCount();
         $pageCount    = count($p->frontMatters) + $chapterCount + count($p->backMatters);
 
         $title = 'Pressbooks Conversion Notes';

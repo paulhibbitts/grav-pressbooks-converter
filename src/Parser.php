@@ -179,11 +179,13 @@ class Parser
             ($divOrder[$a->getAttribute('id')] ?? 0) <=> ($divOrder[$b->getAttribute('id')] ?? 0)
         );
 
-        // Map chapters to their nearest preceding part
+        // Map chapters to their nearest preceding part. A chapter before any part is in Pressbooks' hidden
+        // "Main Body" part (a book without parts shows its chapters on their own), so it becomes a section itself.
         $partChapters = [];
         foreach ($rawParts as $part) {
             $partChapters[$part->getAttribute('id')] = [];
         }
+        $chaptersOnTheirOwn = [];
         foreach ($this->xpath->query("//div[{$this->xc('chapter')} and @id]") as $ch) {
             $chPos    = $divOrder[$ch->getAttribute('id')] ?? 0;
             $parentId = null;
@@ -195,9 +197,7 @@ class Parser
             if ($parentId !== null) {
                 $partChapters[$parentId][] = $ch;
             } else {
-                $titleNode        = $this->xpath->query(".//*[{$this->xc('chapter-title')}]", $ch)->item(0);
-                $chTitle          = $titleNode ? trim($titleNode->textContent) : $ch->getAttribute('id');
-                $this->warnings[] = "chapter \"$chTitle\" has no parent part — skipped";
+                $chaptersOnTheirOwn[] = $ch;
             }
         }
 
@@ -211,6 +211,21 @@ class Parser
                 'id'    => $node->getAttribute('id'),
                 'title' => $title,
                 'html'  => $this->dom->saveHTML($ugc),
+            ];
+        }
+
+        // Serialize the chapters on their own, each as a part (a section) with the chapter's text and no pages
+        foreach ($chaptersOnTheirOwn as $ch) {
+            $chTitleNode = $this->xpath->query(".//*[{$this->xc('chapter-title')}]", $ch)->item(0);
+            $chTitle     = $chTitleNode ? trim($chTitleNode->textContent) : 'Chapter';
+            $this->cleanTitleWrap($ch);
+            $ugc          = $this->xpath->query(".//*[{$this->xc('chapter-ugc')}]", $ch)->item(0) ?? $ch;
+            $footnotesDiv = $this->xpath->query(".//*[{$this->xc('footnotes')}]", $ch)->item(0);
+            $this->parts[] = [
+                'id'       => $ch->getAttribute('id'),
+                'title'    => $chTitle,
+                'html'     => $this->dom->saveHTML($ugc) . ($footnotesDiv ? $this->dom->saveHTML($footnotesDiv) : ''),
+                'chapters' => [],
             ];
         }
 
