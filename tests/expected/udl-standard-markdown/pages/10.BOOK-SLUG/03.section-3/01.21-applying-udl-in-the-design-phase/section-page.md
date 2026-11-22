@@ -28,7 +28,7 @@ When thinking about your course or curriculum design, or re-design, consider:
 
 The following video, *UDL, Technology and Materials* \[1:18\] by UDL on Campus (2015), quickly touches on the use of technology when implementing UDL in the higher education learning environment.
 
-> **UDL, Technology and Materials:** [UDL, Technology and Materials](https://ecampusontario.pressbooks.pub/universaldesign2/?p=51#oembed-1)
+> **Embedded content:** [UDL, Technology and Materials](https://ecampusontario.pressbooks.pub/universaldesign2/?p=51#oembed-1) (on the original Pressbooks page)
 
 ## What Educators Say
 

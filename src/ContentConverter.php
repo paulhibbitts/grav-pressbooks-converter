@@ -325,7 +325,8 @@ class ContentConverter
         // Pressbooks oembed placeholder divs
         foreach (iterator_to_array($xpath->query("//*[{$this->xc('interactive-content--oembed')}]")) as $div) {
             $firstA = $xpath->query('.//a[@href]', $div)->item(0);
-            $title  = $firstA ? ($firstA->getAttribute('title') ?: 'View interactive content') : 'View interactive content';
+            // the item's title, if Pressbooks gives one (used for a YouTube embed's title, and as the link's text)
+            $title  = $firstA ? $firstA->getAttribute('title') : '';
 
             $ytId = null;
             foreach ($xpath->query('.//a[@href]', $div) as $a) {
@@ -344,17 +345,25 @@ class ContentConverter
             } elseif ($firstA) {
                 $url = $firstA->getAttribute('data-url') ?: $firstA->getAttribute('href');
                 if ($url && strpos($url, '#') !== 0) {
-                    // Use a proper <blockquote> so league produces clean block output
+                    // A short note in place of what Pressbooks left out of its export, as Pressbooks itself does:
+                    // "Embedded content: <title> (on the original Pressbooks page)", with the title as the link
+                    // (a proper <blockquote>, so league produces clean block output)
                     $bq    = $dom->createElement('blockquote');
                     $p     = $dom->createElement('p');
                     $b     = $dom->createElement('strong');
-                    $b->textContent = "$title:";
+                    $b->textContent = 'Embedded content:';
                     $p->appendChild($b);
                     $p->appendChild($dom->createTextNode(' '));
                     $a2    = $dom->createElement('a');
                     $a2->setAttribute('href', $url);
-                    $a2->textContent = $title;
-                    $p->appendChild($a2);
+                    if ($title !== '') {
+                        $a2->textContent = $title;
+                        $p->appendChild($a2);
+                        $p->appendChild($dom->createTextNode(' (on the original Pressbooks page)'));
+                    } else {
+                        $a2->textContent = 'View it on the original Pressbooks page';
+                        $p->appendChild($a2);
+                    }
                     $bq->appendChild($p);
                     $div->parentNode->replaceChild($bq, $div);
                 } else {

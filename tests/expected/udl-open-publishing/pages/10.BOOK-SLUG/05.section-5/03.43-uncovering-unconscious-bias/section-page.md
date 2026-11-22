@@ -6,7 +6,7 @@ An unconscious bias (also known as implicit bias) is an implicit attitude, stere
 
 The following video, *Understanding unconscious bias* \[2:59\] by Royal Society (2015), gives an overview of unconscious bias.
 
-> **Understanding unconscious bias | The Royal Society:** [Understanding unconscious bias | The Royal Society](https://ecampusontario.pressbooks.pub/universaldesign2/?p=109#oembed-1)
+> **Embedded content:** [Understanding unconscious bias | The Royal Society](https://ecampusontario.pressbooks.pub/universaldesign2/?p=109#oembed-1) (on the original Pressbooks page)
 
 Unconscious biases are important to recognize in instances when quality, relevance and competence are being evaluated (University of California San Francisco, n.d.).
 
@@ -25,7 +25,7 @@ A vast body of research on unconscious bias shows that there are approximately 1
 
 The PwC (2017) video, *Blind spots: Broaden perspectives* \[3:24\], discusses similarity bias and how to overcome it.
 
-> **Blind spots: Broaden perspectives:** [Blind spots: Broaden perspectives](https://ecampusontario.pressbooks.pub/universaldesign2/?p=109#oembed-2)
+> **Embedded content:** [Blind spots: Broaden perspectives](https://ecampusontario.pressbooks.pub/universaldesign2/?p=109#oembed-2) (on the original Pressbooks page)
 
 ### Confirmation Bias
 
@@ -66,7 +66,7 @@ It is important to note that biases, conscious or unconscious, are not limited t
 
 The Devex (2018) video, *4 steps for busting unconscious bias* \[4:26\], details a step-by-step guide for recognizing and responding to our own unconscious biases.
 
-> **4 steps for busting unconscious bias:** [4 steps for busting unconscious bias](https://ecampusontario.pressbooks.pub/universaldesign2/?p=109#oembed-3)
+> **Embedded content:** [4 steps for busting unconscious bias](https://ecampusontario.pressbooks.pub/universaldesign2/?p=109#oembed-3) (on the original Pressbooks page)
 
 The Center for Teaching and Learning (n.d.) at DePaul University provides some strategies for combating bias in teaching:
 

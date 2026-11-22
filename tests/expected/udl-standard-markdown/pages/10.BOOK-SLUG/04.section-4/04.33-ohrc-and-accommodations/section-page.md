@@ -127,7 +127,7 @@ Once receiving appropriate accommodation, a student must be able to meet bona fi
 
 This OHRC (2013) video, *Working Together: Part 3. Understanding the Duty to Accommodate* \[5:31\], briefly explains your rights and responsibilities under the Code and the AODA.
 
-> **Working Together: Part 3. Understanding the Duty to Accommodate:** [Working Together: Part 3. Understanding the Duty to Accommodate](https://ecampusontario.pressbooks.pub/universaldesign2/?p=84#oembed-1)
+> **Embedded content:** [Working Together: Part 3. Understanding the Duty to Accommodate](https://ecampusontario.pressbooks.pub/universaldesign2/?p=84#oembed-1) (on the original Pressbooks page)
 
 ## Activity 3: Reflect on Case Study 
 

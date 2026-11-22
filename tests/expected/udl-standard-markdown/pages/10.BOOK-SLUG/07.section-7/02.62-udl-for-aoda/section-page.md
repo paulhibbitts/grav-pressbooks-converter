@@ -44,7 +44,7 @@ The suggestions above are not exhaustive and may not replace all AODA or specifi
 
 The following video, *UDL at Landmark College* \[1:07\] by UDL on Campus (2015), offers a view of institution wide UDL implementation in support of learners with disabilities and provides a vision of how UDL can remove post-secondary learning barriers.
 
-> **UDL at Landmark College:** [UDL at Landmark College](https://ecampusontario.pressbooks.pub/universaldesign2/?p=139#oembed-1)
+> **Embedded content:** [UDL at Landmark College](https://ecampusontario.pressbooks.pub/universaldesign2/?p=139#oembed-1) (on the original Pressbooks page)
 
 ## Activity 2: Case Study and Brainstorming
 
