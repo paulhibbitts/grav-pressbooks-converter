@@ -83,8 +83,13 @@ function pickPreviewPages(array $zipFiles, array $sectionLabels, array $zipBin):
     $skipSections = frontAndBackMatterFolders($sectionLabels);
 
     $candidatesBySection = [];
+    // a section's own page, for a chapter that is a section itself (a book without parts): used only when the
+    // section has no chapter pages
+    $sectionPages = [];
     foreach ($zipFiles as $path => $content) {
-        if (!str_ends_with($path, 'section-page.md')) {
+        $isChapterPage = str_ends_with($path, 'section-page.md');
+        $isSectionPage = str_ends_with($path, '/section.md');
+        if (!$isChapterPage && !$isSectionPage) {
             continue;
         }
 
@@ -98,8 +103,19 @@ function pickPreviewPages(array $zipFiles, array $sectionLabels, array $zipBin):
             continue; // skip thin/stub pages
         }
 
-        $candidatesBySection[$section][] = ['path' => $path, 'content' => $content, 'body' => $body];
+        $candidate = ['path' => $path, 'content' => $content, 'body' => $body];
+        if ($isChapterPage) {
+            $candidatesBySection[$section][] = $candidate;
+        } else {
+            $sectionPages[$section] = $candidate;
+        }
     }
+    foreach ($sectionPages as $section => $candidate) {
+        if (!isset($candidatesBySection[$section])) {
+            $candidatesBySection[$section] = [$candidate];
+        }
+    }
+    ksort($candidatesBySection); // in the book's order (02.section-2, 03.section-3 …)
 
     $selected = array_map(
         fn($candidates) => pickBestCandidate($candidates, $zipBin),
