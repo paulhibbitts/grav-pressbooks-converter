@@ -25,31 +25,19 @@ In 2022, *Principles of Social Psychology – 1st International H5P Edition* was
 
 The Creative Commons licence permits you to retain, reuse, copy, redistribute, and revise this book for non-commercial purposes—in whole or in part—for free providing the author is attributed as follows and any shared content retains the same licence:
 
-[announcement]
-*Principles of Social Psychology – 1st International H5P Edition* by Rajiv Jhangiani and Hammond Tarry is licensed under a [CC BY-NC-SA 4.0 licence](http://creativecommons.org/licenses/by-nc-sa/4.0/).
-
-[/announcement]
+> *Principles of Social Psychology – 1st International H5P Edition* by Rajiv Jhangiani and Hammond Tarry is licensed under a [CC BY-NC-SA 4.0 licence](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 If you redistribute all or part of this book, it is recommended the following statement be added to the copyright page so readers can access the original book at no cost:
 
-[announcement]
-Download for free from the [B.C. Open Collection](https://collection.bccampus.ca/).
-
-[/announcement]
+> Download for free from the [B.C. Open Collection](https://collection.bccampus.ca/).
 
 **Sample APA-style citation (7th Edition):**
 
-[announcement]
-Jhangiani, R., & Tarry, H. (2022). *Principles of social psychology* (1st international H5P edition). BCcampus. https://opentextbc.ca/socialpsychology/
-
-[/announcement]
+> Jhangiani, R., & Tarry, H. (2022). *Principles of social psychology* (1st international H5P edition). BCcampus. https://opentextbc.ca/socialpsychology/
 
 **Cover image attribution:**
 
-[announcement]
-[“The party people, as reflected by The Gherkin’s roof”](https://flic.kr/p/4Zx36T) by [James Cridland](https://www.flickr.com/photos/jamescridland/ "Go to James Cridland’s photostream") is licensed under a [CC BY 2.0 licence](https://creativecommons.org/licenses/by/2.0/).
-
-[/announcement]
+> [“The party people, as reflected by The Gherkin’s roof”](https://flic.kr/p/4Zx36T) by [James Cridland](https://www.flickr.com/photos/jamescridland/ "Go to James Cridland’s photostream") is licensed under a [CC BY 2.0 licence](https://creativecommons.org/licenses/by/2.0/).
 
 Visit [BCcampus Open Education](http://open.bccampus.ca/) to learn about open education in British Columbia.
 

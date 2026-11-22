@@ -327,6 +327,18 @@ class Parser
             return null;
         }
 
+        // its boxes hold text to copy (how to credit the book, a citation, the cover's credit), so they become plain
+        // quotes rather than the announcement boxes other Pressbooks text boxes become
+        foreach (iterator_to_array($this->xpath->query(".//div[{$this->xc('textbox')}]", $ugc)) as $box) {
+            $quote     = $this->dom->createElement('blockquote');
+            $paragraph = $this->dom->createElement('p');
+            while ($box->firstChild !== null) {
+                $paragraph->appendChild($box->firstChild);
+            }
+            $quote->appendChild($paragraph);
+            $box->parentNode->replaceChild($quote, $box);
+        }
+
         foreach (iterator_to_array($this->xpath->query(".//*[{$this->xc('license-attribution')}]//img", $ugc)) as $icon) {
             $paragraph = $icon->parentNode;
             $paragraph->removeChild($icon);
