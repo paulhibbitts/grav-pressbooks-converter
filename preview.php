@@ -62,7 +62,7 @@ try {
 }
 
 $zipBin = $builder->getZipBin();
-$pages  = pickPreviewPages($builder->getZipFiles(), $builder->getSectionLabels(), $zipBin);
+$pages  = pickPreviewPages($builder->getZipFiles(), $builder->getMatterSections(), $zipBin);
 if (!$pages) {
     sendError(404, 'No substantial content page was found to preview.');
 }
@@ -78,9 +78,9 @@ exit;
  * pages from the same chapter. Front Matter and Back Matter sections (accessibility
  * statements, prefaces, bibliographies, etc.) are excluded.
  */
-function pickPreviewPages(array $zipFiles, array $sectionLabels, array $zipBin): array
+function pickPreviewPages(array $zipFiles, array $matterSections, array $zipBin): array
 {
-    $skipSections = frontAndBackMatterFolders($sectionLabels);
+    $skipSections = frontAndBackMatterFolders($matterSections);
 
     $candidatesBySection = [];
     // a section's own page, for a chapter that is a section itself (a book without parts): used only when the
@@ -240,14 +240,13 @@ function sectionFolderFromPath(string $path): string
     return $match[1] ?? '';
 }
 
-// section-folder-name => true, for every section titled "Front Matter" or "Back Matter".
-function frontAndBackMatterFolders(array $sectionLabels): array
+// section-folder-name => true, for the Front Matter and Back Matter sections (a one-page one is titled after its
+// page, so they're found by number, not title)
+function frontAndBackMatterFolders(array $matterSections): array
 {
     $folders = [];
-    foreach ($sectionLabels as [$sectionNumber, $sectionTitle]) {
-        if (in_array($sectionTitle, ['Front Matter', 'Back Matter'], true)) {
-            $folders[sprintf('%02d.section-%d', $sectionNumber, $sectionNumber)] = true;
-        }
+    foreach ($matterSections as $sectionNumber) {
+        $folders[sprintf('%02d.section-%d', $sectionNumber, $sectionNumber)] = true;
     }
     return $folders;
 }

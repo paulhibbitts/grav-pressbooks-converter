@@ -15,6 +15,8 @@ class ZipBuilder
     public array $imageFailures  = [];
     public int   $fileCount      = 0;
     public array $sectionLabels  = [];
+    // the numbers of the Front Matter and Back Matter sections (whatever they're titled), for the preview
+    public array $matterSections = [];
 
     private array $allH5pEmbeds = [];
 
@@ -79,6 +81,24 @@ class ZipBuilder
     public function getSectionLabels(): array
     {
         return $this->sectionLabels;
+    }
+
+    // The numbers of the Front Matter and Back Matter sections, which the preview leaves out. (A section with a
+    // single page is titled after that page, so its title doesn't say it's front or back matter.)
+    public function getMatterSections(): array
+    {
+        return $this->matterSections;
+    }
+
+    // A front or back matter section's title and card description: "Front Matter" or "Back Matter" with the usual
+    // description, or – when it has only one page – that page's own title and no description, so its card on the
+    // guide's home says what it is (for example "More Resources" rather than "Back Matter")
+    private function matterTitleAndDescription(array $pages, string $title, string $description): array
+    {
+        if (count($pages) === 1) {
+            return [$pages[0][0], null];
+        }
+        return [$title, $description];
     }
 
     // zipPath => binary image data. Only populated when a remote image was successfully
@@ -311,9 +331,12 @@ class ZipBuilder
             return;
         }
 
+        [$title, $description] = $this->matterTitleAndDescription($pages, 'Front Matter',
+            'Accessibility, about, preface, and acknowledgements.');
+        $this->matterSections[] = 1;
         $this->writeSection(
-            1, 'front-matter', 'Front Matter',
-            'Accessibility, about, preface, and acknowledgements.',
+            1, 'front-matter', $title,
+            $description,
             null, null, $pages,
             $this->sectionLabel !== 'Section' ? '' : null,
             false
@@ -520,9 +543,12 @@ class ZipBuilder
             $pages[] = [$bm['title'], $content];
         }
 
+        [$title, $description] = $this->matterTitleAndDescription($pages, 'Back Matter',
+            'Appendices, bibliography, and versioning history.');
+        $this->matterSections[] = $secNum;
         $this->writeSection(
-            $secNum, 'back-matter', 'Back Matter',
-            'Appendices, bibliography, and versioning history.',
+            $secNum, 'back-matter', $title,
+            $description,
             null, null, $pages,
             $this->sectionLabel !== 'Section' ? '' : null,
             false

@@ -1,8 +1,7 @@
 ---
-title: "Front Matter"
+title: "Introduction"
 section_label: ""
 numbered: false
-description: "Accessibility, about, preface, and acknowledgements."
 redirect: /BOOK-SLUG/section-1/introduction
 ---
 
