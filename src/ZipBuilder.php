@@ -291,7 +291,7 @@ class ZipBuilder
             $announcementBody .= "*{$destinationLink} supports embedded video, audio, and H5P activities. {$mediaItems} in this converted book may appear as links rather than embedded content.*\n\n";
         }
 
-        $annoTitle = $p->bookTitle . ' — Imported from Pressbooks';
+        $annoTitle = $p->bookTitle . ' – Imported from Pressbooks';
         if ($this->portableMarkdown) {
             $body = "> [!IMPORTANT]\n> **" . $annoTitle . "**\n"
                   . $this->quoteBlock($announcementBody)

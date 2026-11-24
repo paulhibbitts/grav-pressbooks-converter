@@ -9,7 +9,7 @@ show_section_label: false
 attribution_text: "Edge Cases Sample by Sample Author is licensed under <a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a>."
 ---
 
-[announcement title="Edge Cases Sample — Imported from Pressbooks"]
+[announcement title="Edge Cases Sample – Imported from Pressbooks"]
 
 **Authors:** Sample Author | **License:** CC BY 4.0 | **4 pages**
 

@@ -12,7 +12,7 @@ show_section_label: false
 attribution_text: "Principles of Social Psychology - 1st International H5P Edition by Dr. Rajiv Jhangiani and Dr. Hammond Tarry © 2022 is licensed under <a href=\"https://creativecommons.org/licenses/by-nc-sa/4.0/\">CC BY-NC-SA 4.0</a>."
 ---
 
-[announcement title="Principles of Social Psychology - 1st International H5P Edition — Imported from Pressbooks"]
+[announcement title="Principles of Social Psychology - 1st International H5P Edition – Imported from Pressbooks"]
 
 **Authors:** Dr. Rajiv Jhangiani and Dr. Hammond Tarry | **License:** CC BY-NC-SA 4.0 | **72 pages**
 

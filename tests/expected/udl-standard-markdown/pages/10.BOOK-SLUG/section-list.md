@@ -3,7 +3,7 @@ title: "Universal Design for Learning (UDL) for Inclusion, Diversity, Equity, an
 ---
 
 > [!IMPORTANT]
-> **Universal Design for Learning (UDL) for Inclusion, Diversity, Equity, and Accessibility (IDEA) 2nd Edition — Imported from Pressbooks**
+> **Universal Design for Learning (UDL) for Inclusion, Diversity, Equity, and Accessibility (IDEA) 2nd Edition – Imported from Pressbooks**
 > **Authors:** Darla Benton Kearney | **License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | **36 pages**
 >
 > [View original on Pressbooks](https://ecampusontario.pressbooks.pub/universaldesign2/)
