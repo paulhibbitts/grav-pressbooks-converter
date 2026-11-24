@@ -4,6 +4,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 use PB\Parser;
 use PB\ZipBuilder;
 
+// For a Docsify download: the book is converted for Open Publishing Space, then sent to the Grav Docsify Bridge
+const DOCSIFY_BRIDGE = 'https://grav-docsify-bridge.hibbittsdesign.org/convert.php';
+
 set_time_limit(120);
 ini_set('memory_limit', '256M');
 
@@ -63,8 +66,10 @@ $destination = '';
 if (isset($_POST['destination'])) {
     $destination = $_POST['destination'];
 }
+// Docsify-This: converted as for Open Publishing Space, which the bridge then moves to Docsify
+$toDocsify = $destination === 'docsify';
 $keepBookFolderInAddresses = false;
-if ($destination === 'open-publishing') {
+if ($destination === 'open-publishing' || $toDocsify) {
     $keepBookFolderInAddresses = true;
 }
 if ($portableMarkdown) {
@@ -114,6 +119,13 @@ try {
 
 // Serve the zip
 $filename = 'open-reader-' . $parser->bookSlug . '.zip';
+if ($toDocsify) {
+    $docsifyZipPath = sendToBridge($zipPath);
+    copyConversionNotes($zipPath, $docsifyZipPath);
+    unlink($zipPath);
+    $zipPath = $docsifyZipPath;
+    $filename = 'docsify-' . $parser->bookSlug . '.zip';
+}
 setcookie('download_ready', '1', time() + 60, '/');
 header('Content-Type: application/zip');
 header('Content-Disposition: attachment; filename="' . $filename . '"');
@@ -123,6 +135,58 @@ header('Pragma: no-cache');
 readfile($zipPath);
 unlink($zipPath);
 exit;
+
+// ── Docsify download ──────────────────────────────────────────────────────────
+
+// Sends the Open Publishing Space zip to the Grav Docsify Bridge and returns the path of the Docsify zip it sends
+// back. A book is one guide, so the bridge makes a single-guide site (its home page is home.md).
+function sendToBridge(string $gravZipPath): string
+{
+    $request = curl_init(DOCSIFY_BRIDGE);
+    curl_setopt_array($request, [
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => [
+            'site'   => new CURLFile($gravZipPath, 'application/zip', 'book.zip'),
+            'single' => '1',
+        ],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 180,
+    ]);
+    $response = curl_exec($request);
+    $status   = curl_getinfo($request, CURLINFO_HTTP_CODE);
+    $type     = (string) curl_getinfo($request, CURLINFO_CONTENT_TYPE);
+
+    if ($response === false || $status !== 200 || !str_contains($type, 'zip')) {
+        unlink($gravZipPath);
+        // the bridge explains a problem in plain text; otherwise it couldn't be reached
+        $reason = 'the Grav Docsify Bridge couldn\'t be reached';
+        if (is_string($response) && $status === 400) {
+            $reason = mb_substr(trim($response), 0, 300);
+        }
+        showError('The book was converted, but making its Docsify version failed: ' . $reason
+            . ' Try again, or choose Grav Open Publishing Space and upload that download to the Grav Docsify Bridge.');
+    }
+
+    $docsifyZipPath = tempnam(sys_get_temp_dir(), 'docsify-');
+    file_put_contents($docsifyZipPath, $response);
+    return $docsifyZipPath;
+}
+
+// Copies conversion-notes.txt from the Open Publishing Space zip into the Docsify zip, beside the bridge's notes
+function copyConversionNotes(string $fromZipPath, string $toZipPath): void
+{
+    $from = new ZipArchive();
+    $to   = new ZipArchive();
+    if ($from->open($fromZipPath) !== true || $to->open($toZipPath) !== true) {
+        return; // the notes are a help, not needed for the site
+    }
+    $notes = $from->getFromName('conversion-notes.txt');
+    if ($notes !== false) {
+        $to->addFromString('conversion-notes.txt', $notes);
+    }
+    $from->close();
+    $to->close();
+}
 
 // ── Error page ────────────────────────────────────────────────────────────────
 
