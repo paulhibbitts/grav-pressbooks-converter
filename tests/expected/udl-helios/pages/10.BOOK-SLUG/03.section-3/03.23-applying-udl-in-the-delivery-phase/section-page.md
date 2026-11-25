@@ -25,7 +25,7 @@ When delivering your instruction, think about:
 
 In *UDL at Mohawk College* \[2:27\], Lisa Pender, a Professor in the Liberal Studies Program, describes her UDL implementation and the impact of employing UDL on her and her learners.
 
-[View H5P activity online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=57)
+[View embedded media online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=57)
 
 [exercise title="Activity 4: Test your Knowledge"]
 Now that you’re familiar with UDL implementation in the delivery phase, let’s test your knowledge! Link the UDL practice to the correct checkpoint(s) in the following 5 question quiz. To complete the quiz, choose the correct response, click the “check” button to check your answer, then use the blue arrow to advance to the next question. Repeat until all 5 questions are complete.

@@ -637,7 +637,11 @@ class ContentConverter
                 }
                 // Always produce a bare link — standalone activities outside a textbox--exercises
                 // container render as plain links; the textbox--exercises handler wraps in [exercise]
-                $callouts[$ph] = "[View H5P activity online ↗]({$url})";
+                // Pressbooks uses the same box for other embeds, such as a video (class interactive-content--iframe,
+                // linking to the chapter rather than to #h5p-…), so only an H5P link is called an H5P activity
+                $isH5p = preg_match('/#h5p-\d+$/i', $url) === 1;
+                $label = $isH5p ? 'View H5P activity online ↗' : 'View embedded media online ↗';
+                $callouts[$ph] = "[{$label}]({$url})";
             }
             $h5pCallouts[$ph] = true;
 

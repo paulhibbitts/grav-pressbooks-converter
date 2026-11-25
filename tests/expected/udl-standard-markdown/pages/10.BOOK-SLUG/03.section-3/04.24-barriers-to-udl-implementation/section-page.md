@@ -58,7 +58,7 @@ To find the resources and learning opportunities that are ideal for you, be spec
 
 In *UDL at Mohawk College* \[2:27\] Ryan Iles, a Professor in the Liberal Studies Program, discusses his start to UDL implementation and addresses some common concerns for educators starting their UDL journey.
 
-[View H5P activity online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=63)
+[View embedded media online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=63)
 
 ## Activity 5: Reflecting on Barriers 
 

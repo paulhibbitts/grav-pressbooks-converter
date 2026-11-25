@@ -31,7 +31,7 @@ When developing your course, think about:
 
 In *UDL at Mohawk College* \[2:50\], Melodie Spencer, a Professor in the Early Childhood Education Program, gives an overview of how she has embedded UDL throughout her courses and teaching philosophy.
 
-[View H5P activity online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=54)
+[View embedded media online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=54)
 
 [exercise title="Activity 3: Test your Knowledge"]
 Now that you’re familiar with UDL implementation in the development phase, let’s test your knowledge! Link the UDL practice to the correct checkpoint(s) in the following 5 question quiz. To complete the quiz, choose the correct response(s), click the “check” button to check your answer, then use the blue arrow to advance to the next question. Repeat until all 5 questions are complete.

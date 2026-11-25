@@ -31,7 +31,7 @@ When developing your course, think about:
 
 In *UDL at Mohawk College* \[2:50\], Melodie Spencer, a Professor in the Early Childhood Education Program, gives an overview of how she has embedded UDL throughout her courses and teaching philosophy.
 
-[View H5P activity online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=54)
+[View embedded media online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=54)
 
 ## Activity 3: Test your Knowledge
 

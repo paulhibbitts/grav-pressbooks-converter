@@ -8,7 +8,7 @@ Think back to how you defined Universal Design for Learning in Module 1: Introdu
 
 If you did not have an opportunity to complete Module 1 you can get a quick overview of how the UDL Guidelines are structured, and how they apply to post-secondary education by watching Mohawk College’s video, *What is UDL?* \[3:34\] (2025).
 
-[View H5P activity online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=137)
+[View embedded media online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=137)
 
  [(Mohawk College, 2025) Video Transcript (PDF)](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/07/M1_UDLtranscript-1.pdf)
 

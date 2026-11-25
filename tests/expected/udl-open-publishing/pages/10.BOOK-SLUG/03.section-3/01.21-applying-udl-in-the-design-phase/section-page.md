@@ -34,7 +34,7 @@ The following video, *UDL, Technology and Materials* \[1:18\] by UDL on Campus (
 
 In *UDL at Mohawk College* \[2:43\], Tara Dinyer, Professor in the Health, Wellness and Fitness Program, describes her UDL implementation process and provides examples of some of the UDL elements she has embedded into her courses.
 
-[View H5P activity online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=51)
+[View embedded media online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=51)
 
 [exercise title="Activity 2: Test Your Knowledge"]
 Now that you’re familiar with UDL implementation in the design phase, let’s test your knowledge! Link the UDL practice to the correct consideration in the following 5 question quiz. To complete the quiz, choose the correct response, click the “check” button to check your answer, then use the blue arrow to advance to the next question. Repeat until all 5 questions are complete.

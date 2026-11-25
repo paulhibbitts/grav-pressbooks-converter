@@ -34,7 +34,7 @@ The following video, *UDL, Technology and Materials* \[1:18\] by UDL on Campus (
 
 In *UDL at Mohawk College* \[2:43\], Tara Dinyer, Professor in the Health, Wellness and Fitness Program, describes her UDL implementation process and provides examples of some of the UDL elements she has embedded into her courses.
 
-[View H5P activity online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=51)
+[View embedded media online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=51)
 
 ## Activity 2: Test Your Knowledge
 

@@ -25,7 +25,7 @@ When delivering your instruction, think about:
 
 In *UDL at Mohawk College* \[2:27\], Lisa Pender, a Professor in the Liberal Studies Program, describes her UDL implementation and the impact of employing UDL on her and her learners.
 
-[View H5P activity online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=57)
+[View embedded media online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=57)
 
 ## Activity 4: Test your Knowledge
 

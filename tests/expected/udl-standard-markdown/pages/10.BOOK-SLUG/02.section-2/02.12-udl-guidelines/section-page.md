@@ -62,7 +62,7 @@ The guidelines are not prescriptive, but instead offer informed suggestions that
 
  The video, *What is UDL?* \[3:34\] by Mohawk College (2025), explains how all ofthe UDL components work together.
 
-[View H5P activity online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=37)
+[View embedded media online ↗](https://ecampusontario.pressbooks.pub/universaldesign2/?p=37)
 
  [Transcript of What is UDL? (PDF) ↗](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/07/M1_UDLtranscript-1.pdf)
 
