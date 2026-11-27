@@ -169,9 +169,13 @@ class ContentConverter
         // Fix escaped underscores inside URLs
         $result = preg_replace_callback('/(https?:\/\/\S+)/', fn($m) => str_replace('\\_', '_', $m[1]), $result);
 
-        // A YouTube shortcode is added as text, so its brackets come out escaped (\[youtube\]…\[/youtube\]);
-        // Grav still shows the video, but other tools (such as the Grav Docsify Bridge) need the plain form
-        $result = preg_replace('/\\\\\[(\/?youtube)\\\\\]/', '[$1]', $result);
+        // YouTube shortcodes are added as text, so their brackets come out escaped (\[youtube title="…"\]).
+        // Remove the backslashes in each [youtube …] or [/youtube] tag, so Grav and the Docsify bridge can read it
+        $result = preg_replace_callback(
+            '/\\\\?\[\/?youtube\b[^\]]*\]/',
+            fn ($tag) => str_replace('\\', '', $tag[0]),
+            $result
+        );
 
         // Replace footnote placeholders with Markdown Extra syntax
         $result = preg_replace('/%%FN(\d+)%%/', '[^$1]', $result);
@@ -325,7 +329,7 @@ class ContentConverter
                 $title = $iframe->getAttribute('title');
                 $sc = $this->portableMarkdown
                     ? $this->youtubeIframe($m[1], $title)
-                    : '[youtube]https://www.youtube.com/watch?v=' . $m[1] . '[/youtube]';
+                    : '[youtube' . $this->shortcodeTitle($title) . ']https://www.youtube.com/watch?v=' . $m[1] . '[/youtube]';
                 $iframe->parentNode->replaceChild($dom->createTextNode($sc), $iframe);
             }
         }
@@ -365,7 +369,7 @@ class ContentConverter
             if ($ytId) {
                 $sc = $this->portableMarkdown
                     ? $this->youtubeIframe($ytId, $title) . "\n"
-                    : "[youtube]https://www.youtube.com/watch?v={$ytId}[/youtube]\n";
+                    : '[youtube' . $this->shortcodeTitle($title) . ']https://www.youtube.com/watch?v=' . $ytId . "[/youtube]\n";
                 // its own paragraph, so the text after it starts on a new line
                 $para = $dom->createElement('p');
                 $para->appendChild($dom->createTextNode(trim($sc)));
@@ -649,7 +653,7 @@ class ContentConverter
                 $this->h5pEmbeds[] = ['source' => $url, 'embed' => $embedUrl];
                 $callouts[$ph]     = $this->portableMarkdown
                     ? $this->h5pIframe($embedUrl, $title)
-                    : "[h5p url=\"{$embedUrl}\"]";
+                    : "[h5p url=\"{$embedUrl}\"" . $this->shortcodeTitle($firstA->getAttribute('title')) . ']';
             } else {
                 // Check whether this H5P is inside a textbox--exercises container; if so,
                 // produce a bare link so the outer handler wraps everything in one [exercise] box
@@ -989,6 +993,20 @@ class ContentConverter
         }
         $holder->parentNode->insertBefore($line, $holder);
         $this->tableCaptions++;
+    }
+
+    // ' title="…"' for a [youtube] or [h5p] shortcode, so screen readers announce it by name ('' if no title)
+    private function shortcodeTitle(string $title): string
+    {
+        // quotes and square brackets would end the shortcode early
+        $title = str_replace(['"', '[', ']'], ["'", '(', ')'], $title);
+        // keep it on one line
+        $title = trim(preg_replace('/\s+/', ' ', $title));
+
+        if ($title === '') {
+            return '';
+        }
+        return ' title="' . $title . '"';
     }
 
     // Videos and other embeds the export left out, fetched from the book (see ZipBuilder::fetchLeftOutEmbeds()),
