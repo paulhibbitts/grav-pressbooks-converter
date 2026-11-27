@@ -1136,9 +1136,7 @@ class ContentConverter
 
             // Icons inside the <a> tag
             foreach (iterator_to_array($xpath->query('.//img', $a)) as $img) {
-                $w = (int) $img->getAttribute('width');
-                $h = (int) $img->getAttribute('height');
-                if (($w > 0 && $w <= 20) || ($h > 0 && $h <= 20)) {
+                if ($this->isLinkIcon($img)) {
                     $img->parentNode->removeChild($img);
                     $iconFound = true;
                 }
@@ -1149,13 +1147,17 @@ class ContentConverter
             while ($next && $next->nodeType === XML_TEXT_NODE && trim($next->textContent) === '') {
                 $next = $next->nextSibling;
             }
-            if ($next && $next->nodeName === 'img') {
-                $w = (int) $next->getAttribute('width');
-                $h = (int) $next->getAttribute('height');
-                if (($w > 0 && $w <= 20) || ($h > 0 && $h <= 20)) {
-                    $next->parentNode->removeChild($next);
-                    $iconFound = true;
+            if ($next && $next->nodeName === 'img' && $this->isLinkIcon($next)) {
+                // when punctuation follows the icon, also drop the space before it, so the
+                // text reads "link, more" and not "link , more"
+                $after = $next->nextSibling;
+                if ($after && $after->nodeType === XML_TEXT_NODE && preg_match('/^[,.;:!?)]/', $after->textContent)) {
+                    while ($a->nextSibling && $a->nextSibling !== $next) {
+                        $a->parentNode->removeChild($a->nextSibling);
+                    }
                 }
+                $next->parentNode->removeChild($next);
+                $iconFound = true;
             }
 
             // Append ↗ to link text for external (new tab) links that had an icon
@@ -1164,7 +1166,30 @@ class ContentConverter
             }
         }
 
+        // Icons left anywhere else, such as after an address written as plain text: removed when
+        // their alt text says what they are (a small image without that alt text might be content)
+        foreach (iterator_to_array($xpath->query('//img')) as $img) {
+            if ($this->hasLinkIconAlt($img)) {
+                $img->parentNode->removeChild($img);
+            }
+        }
+
         return $this->bodyHtml($body);
+    }
+
+    // A small "opens in a new tab" or "downloads a document" icon beside a link: 20px or smaller,
+    // or (when the book's web pages leave out its size) alt text that says so
+    private function isLinkIcon(\DOMElement $img): bool
+    {
+        $w = (int) $img->getAttribute('width');
+        $h = (int) $img->getAttribute('height');
+        return ($w > 0 && $w <= 20) || ($h > 0 && $h <= 20) || $this->hasLinkIconAlt($img);
+    }
+
+    // Alt text such as "Opens in a new tab.", "(opens in a new tab)" or "Link downloads a document."
+    private function hasLinkIconAlt(\DOMElement $img): bool
+    {
+        return (bool) preg_match('/opens in a new (tab|window)|downloads? (a )?document/i', $img->getAttribute('alt'));
     }
 
     private function loadFragment(string $html): \DOMDocument
