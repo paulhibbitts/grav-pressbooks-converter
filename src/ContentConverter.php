@@ -168,6 +168,10 @@ class ContentConverter
         // Fix escaped underscores inside URLs
         $result = preg_replace_callback('/(https?:\/\/\S+)/', fn($m) => str_replace('\\_', '_', $m[1]), $result);
 
+        // A YouTube shortcode is added as text, so its brackets come out escaped (\[youtube\]…\[/youtube\]);
+        // Grav still shows the video, but other tools (such as the Grav Docsify Bridge) need the plain form
+        $result = preg_replace('/\\\\\[(\/?youtube)\\\\\]/', '[$1]', $result);
+
         // Replace footnote placeholders with Markdown Extra syntax
         $result = preg_replace('/%%FN(\d+)%%/', '[^$1]', $result);
         // "[/term](s)" would be read as a Markdown link (brackets with no spaces inside), so its "(" is escaped
