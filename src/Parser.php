@@ -152,6 +152,18 @@ class Parser
         $this->bookSlug = $slug;
     }
 
+    // A page's content, with its footnotes added when they sit outside that content (as in front and
+    // back matter, where Pressbooks puts the footnotes after the page's text), so they aren't left out
+    private function htmlWithFootnotes(\DOMNode $page, \DOMNode $content): string
+    {
+        $html         = $this->dom->saveHTML($content);
+        $footnotesDiv = $this->xpath->query(".//*[{$this->xc('footnotes')}]", $page)->item(0);
+        if ($footnotesDiv && $this->xpath->query(".//*[{$this->xc('footnotes')}]", $content)->length === 0) {
+            $html .= $this->dom->saveHTML($footnotesDiv);
+        }
+        return $html;
+    }
+
     private function extractStructure(): void
     {
         // Build document order map (all divs with id)
@@ -210,7 +222,7 @@ class Parser
             $this->frontMatters[] = [
                 'id'    => $node->getAttribute('id'),
                 'title' => $title,
-                'html'  => $this->dom->saveHTML($ugc),
+                'html'  => $this->htmlWithFootnotes($node, $ugc),
             ];
         }
 
@@ -285,7 +297,7 @@ class Parser
             $this->backMatters[] = [
                 'id'    => $node->getAttribute('id'),
                 'title' => $title,
-                'html'  => $this->dom->saveHTML($ugc),
+                'html'  => $this->htmlWithFootnotes($node, $ugc),
             ];
         }
 
