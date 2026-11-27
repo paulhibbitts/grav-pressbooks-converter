@@ -48,6 +48,9 @@ class ContentConverter
         $this->h5pEmbeds = [];
         // Strip Pressbooks decorative indicator icons (new-tab, download) — small <img> inside <a>
         $html = $this->stripLinkIcons($html);
+        $html = $this->fixEscapedLinks($html);
+        $html = $this->unwrapLayoutTables($html);
+        $html = $this->tidyTableCells($html);
         $html = $this->markGlossaryTerms($html);
 
         // Remove empty inline code elements (produce stray `` in output)
@@ -802,6 +805,10 @@ class ContentConverter
 
         $result = $this->md->convert($html);
 
+        // line breaks inside table cells (see tidyTableCells) become <br>, which keeps the cell's
+        // lines apart without breaking the Markdown table
+        $result = str_replace(self::CELL_BREAK, '<br>', $result);
+
         // league/html-to-markdown uses * for bullets; normalise to -
         $result = preg_replace('/^(\s*)\* /m', '$1- ', $result);
 
@@ -1118,6 +1125,161 @@ class ContentConverter
         if (preg_match('/^\s*(figure|fig\.?)\s*\d/i', $captionEl->textContent)) {
             $this->numberedFigureCaptions++;
         }
+    }
+
+    // Some exports escape a link's & more than once (&amp;amp;amp;), so the converted link would
+    // show "&amp;" in its address and break it. One &amp; is the correct form inside HTML.
+    private function fixEscapedLinks(string $html): string
+    {
+        return preg_replace_callback(
+            '/\b(href|src|data-url)="([^"]*)"/',
+            fn ($m) => $m[1] . '="' . preg_replace('/&amp;(?:amp;)+/', '&amp;', $m[2]) . '"',
+            $html
+        );
+    }
+
+    // A table used only as a frame (one row, where the only cell with anything in it holds another
+    // table) is replaced by what's in that cell, so the real table inside converts as a table and
+    // not as one garbled row
+    private function unwrapLayoutTables(string $html): string
+    {
+        if (substr_count(strtolower($html), '<table') < 2) {
+            return $html;
+        }
+        $dom   = $this->loadFragment($html);
+        $body  = $dom->getElementsByTagName('body')->item(0);
+        $xpath = new \DOMXPath($dom);
+
+        // outermost frames first; a frame inside a frame is found on the next pass
+        do {
+            $changed = false;
+            foreach (iterator_to_array($xpath->query('//table[not(ancestor::table)]')) as $table) {
+                $rows = $xpath->query('./tr | ./thead/tr | ./tbody/tr | ./tfoot/tr', $table);
+                if ($rows->length !== 1) {
+                    continue;
+                }
+                // the row's cells that hold something (text, an image or a table); the rest are empty
+                $filled = [];
+                foreach ($xpath->query('./td | ./th', $rows->item(0)) as $td) {
+                    if ($this->hasContent($xpath, $td)) {
+                        $filled[] = $td;
+                    }
+                }
+                if (count($filled) !== 1 || $xpath->query('.//table', $filled[0])->length === 0) {
+                    continue;
+                }
+                $cell = $filled[0];
+                while ($cell->firstChild) {
+                    $table->parentNode->insertBefore($cell->firstChild, $table);
+                }
+                $table->parentNode->removeChild($table);
+                $changed = true;
+            }
+        } while ($changed);
+
+        return $this->bodyHtml($body);
+    }
+
+    // Stands in for a line break inside a table cell until the Markdown is made (plain letters, so the
+    // HTML-to-Markdown step leaves it alone); toMarkdown() turns it into <br>
+    private const CELL_BREAK = 'QQCELLBREAKQQ';
+
+    // Table cells written like small pages – paragraphs, line breaks and horizontal lines – would run
+    // together on one line in a Markdown table ("[Link one](…)[Link two](…) ---"). Here each paragraph
+    // or line break becomes a cell line break, horizontal lines and empty paragraphs are dropped, and
+    // columns that are empty in every row are removed.
+    private function tidyTableCells(string $html): string
+    {
+        if (stripos($html, '<table') === false) {
+            return $html;
+        }
+        $dom   = $this->loadFragment($html);
+        $body  = $dom->getElementsByTagName('body')->item(0);
+        $xpath = new \DOMXPath($dom);
+
+        foreach (iterator_to_array($xpath->query('//td | //th')) as $cell) {
+            // horizontal lines used as separators inside the cell
+            foreach (iterator_to_array($xpath->query('.//hr', $cell)) as $hr) {
+                $hr->parentNode->removeChild($hr);
+            }
+            // a line break becomes a cell line break
+            foreach (iterator_to_array($xpath->query('.//br', $cell)) as $br) {
+                $br->parentNode->replaceChild($dom->createTextNode(self::CELL_BREAK), $br);
+            }
+            // each list item starts a new line with a bullet, as Markdown lists can't go in a table cell
+            foreach (iterator_to_array($xpath->query('.//li', $cell)) as $li) {
+                $li->insertBefore($dom->createTextNode('• '), $li->firstChild);
+            }
+            // each paragraph, div or list item starts a new line in the cell; empty ones are dropped
+            foreach (iterator_to_array($xpath->query('.//p | .//div | .//li | .//ul | .//ol', $cell)) as $block) {
+                if (!$this->hasContent($xpath, $block)) {
+                    $block->parentNode->removeChild($block);
+                    continue;
+                }
+                $block->parentNode->insertBefore($dom->createTextNode(self::CELL_BREAK), $block);
+                while ($block->firstChild) {
+                    $block->parentNode->insertBefore($block->firstChild, $block);
+                }
+                $block->parentNode->removeChild($block);
+            }
+            // no line breaks at the start or end of a cell, and never two in a row
+            $inner = '';
+            foreach ($cell->childNodes as $child) {
+                $inner .= $dom->saveHTML($child);
+            }
+            $tidy = preg_replace('/(\s*' . self::CELL_BREAK . '\s*)+/', self::CELL_BREAK, $inner);
+            $tidy = preg_replace('/^(\s|&nbsp;|' . self::CELL_BREAK . ')+|(\s|&nbsp;|' . self::CELL_BREAK . ')+$/u', '', $tidy);
+            if ($tidy !== $inner) {
+                while ($cell->firstChild) {
+                    $cell->removeChild($cell->firstChild);
+                }
+                $fragment = $this->loadFragment($tidy)->getElementsByTagName('body')->item(0);
+                foreach (iterator_to_array($fragment->childNodes) as $child) {
+                    $cell->appendChild($dom->importNode($child, true));
+                }
+            }
+        }
+
+        // columns that are empty in every row (only in simple tables without merged cells)
+        foreach (iterator_to_array($xpath->query('//table')) as $table) {
+            if ($xpath->query('.//*[@colspan or @rowspan]', $table)->length > 0) {
+                continue;
+            }
+            $rows = iterator_to_array($xpath->query('./tr | ./thead/tr | ./tbody/tr | ./tfoot/tr', $table));
+            $width = 0;
+            foreach ($rows as $row) {
+                $width = max($width, $xpath->query('./td | ./th', $row)->length);
+            }
+            for ($col = $width - 1; $col >= 0; $col--) {
+                $empty = true;
+                foreach ($rows as $row) {
+                    $cell = $xpath->query('./td | ./th', $row)->item($col);
+                    if ($cell && $this->hasContent($xpath, $cell)) {
+                        $empty = false;
+                        break;
+                    }
+                }
+                if ($empty) {
+                    foreach ($rows as $row) {
+                        $cell = $xpath->query('./td | ./th', $row)->item($col);
+                        if ($cell) {
+                            $row->removeChild($cell);
+                        }
+                    }
+                }
+            }
+        }
+
+        return $this->bodyHtml($body);
+    }
+
+    // True when an element shows something: text, or an image, embed (video, H5P), math or table
+    private function hasContent(\DOMXPath $xpath, \DOMNode $node): bool
+    {
+        if (trim(str_replace("\u{00A0}", ' ', $node->textContent)) !== '') {
+            return true;
+        }
+        return $xpath->query('.//img | .//iframe | .//video | .//audio | .//object | .//embed | .//svg | .//math | .//table', $node)->length > 0;
     }
 
     // ── DOM helpers ───────────────────────────────────────────────────────────
