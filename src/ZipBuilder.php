@@ -39,6 +39,7 @@ class ZipBuilder
 
     // How many part intro pages came from the book on Pressbooks, as the export left them out
     private int    $partIntrosFetched = 0;
+    private int    $embedsFetched     = 0; // videos and other embeds the export left out, fetched from the book
 
     // Why the last web request failed, for the conversion notes
     private string $lastFetchError = '';
@@ -164,6 +165,7 @@ class ZipBuilder
         $this->sectionLabel  = $this->detectSectionLabel();
 
         $this->buildSectionList();
+        $this->converter->setLeftOutEmbeds($this->fetchLeftOutEmbeds());
         $this->buildFrontMatter();
         $this->buildParts();
         $this->buildBackMatter();
@@ -501,6 +503,121 @@ class ZipBuilder
             },
             $html
         );
+    }
+
+    // Pressbooks exports leave out videos and other embeds, keeping a link back to the page instead
+    // (https://host/book/?p=21#oembed-1). The book on Pressbooks still has them, so get each page from
+    // the book's REST API and find the embed's own address. Returns the placeholder's link => the
+    // embed's address; a placeholder that isn't found keeps its link back to the book
+    private function fetchLeftOutEmbeds(): array
+    {
+        // every placeholder link (with its title) in the book's pages
+        $html = '';
+        foreach ($this->parser->frontMatters as $fm) {
+            $html .= $fm['html'];
+        }
+        foreach ($this->parser->parts as $part) {
+            $html .= $part['html'];
+            foreach ($part['chapters'] as $ch) {
+                $html .= $ch['html'];
+            }
+        }
+        foreach ($this->parser->backMatters as $bm) {
+            $html .= $bm['html'];
+        }
+        $placeholders = [];
+        foreach ($this->linkTags($html) as $a) {
+            // …?p=21#oembed-1 (the first embed on page 21), or …?p=22#pb-interactive-content (an embed on page 22
+            // with no number, so it's only found by its title: n is 0)
+            if (preg_match('/[?&]p=(\d+)#(?:oembed-(\d+)|pb-interactive-content)$/', $a['data-url'] ?? '', $m)) {
+                $placeholders[$a['data-url']] = ['post' => $m[1], 'n' => (int) ($m[2] ?? 0), 'title' => $a['title'] ?? ''];
+            }
+        }
+        $bookUrl = $this->parser->bookUrl;
+        if (!$placeholders || !$bookUrl) {
+            return [];
+        }
+
+        // each page once: its videos and other embeds (not H5P activities or empty frames), in order
+        $embedsByPost = [];
+        $failure = '';
+        foreach (array_unique(array_column($placeholders, 'post')) as $postId) {
+            $embedsByPost[$postId] = [];
+            foreach (['chapters', 'front-matter', 'back-matter', 'parts'] as $type) {
+                $this->lastFetchError = '';
+                $json = $this->fetchText($bookUrl . 'wp-json/pressbooks/v2/' . $type . '/' . $postId);
+                if ($json === null) {
+                    if (strpos($this->lastFetchError, ' 404') !== false) {
+                        continue; // not this kind of page; try the next kind
+                    }
+                    $failure = $this->lastFetchError ?: 'no response';
+                    break 2; // the book can't be reached, so don't keep asking
+                }
+                $content = json_decode($json, true)['content']['rendered'] ?? '';
+                foreach ($this->iframeTags($content) as $frame) {
+                    $src = $frame['src'] ?? '';
+                    if ($src !== '' && stripos($src, 'h5p') === false && strpos($src, 'about:blank') !== 0) {
+                        $embedsByPost[$postId][] = ['src' => $src, 'title' => $frame['title'] ?? ''];
+                    }
+                }
+                break;
+            }
+        }
+
+        // match each placeholder to its embed: by title, or else by its place among the page's embeds
+        $found = [];
+        foreach ($placeholders as $link => $ph) {
+            $embeds = $embedsByPost[$ph['post']] ?? [];
+            $match  = null;
+            foreach ($embeds as $embed) {
+                if ($ph['title'] !== '' && trim($embed['title']) === trim($ph['title'])) {
+                    $match = $embed;
+                    break;
+                }
+            }
+            if (!$match && $ph['n'] > 0) {
+                $match = $embeds[$ph['n'] - 1] ?? null;
+            }
+            if ($match && preg_match('#^https://#', $match['src'])) {
+                $found[$link] = $match['src'];
+            }
+        }
+
+        $this->embedsFetched = count($found);
+        $missed = count($placeholders) - count($found);
+        if ($missed > 0) {
+            $why = $failure !== '' ? ' (' . $failure . ')' : '';
+            $this->warnings[] = $missed . ' video(s) or other embeds left out of the export couldn\'t be fetched from '
+                              . $bookUrl . $why . ' – each links back to the book instead';
+        }
+        return $found;
+    }
+
+    // The attributes of each <a> tag in some HTML, such as ['title' => …, 'data-url' => …]
+    private function linkTags(string $html): array
+    {
+        return $this->tagAttributes($html, 'a');
+    }
+
+    // The attributes of each <iframe> tag in some HTML, such as ['src' => …, 'title' => …]
+    private function iframeTags(string $html): array
+    {
+        return $this->tagAttributes($html, 'iframe');
+    }
+
+    private function tagAttributes(string $html, string $tag): array
+    {
+        $tags = [];
+        preg_match_all('/<' . $tag . '\b([^>]*)>/i', $html, $matches);
+        foreach ($matches[1] as $attrText) {
+            preg_match_all('/([a-z-]+)="([^"]*)"/i', $attrText, $pairs, PREG_SET_ORDER);
+            $attrs = [];
+            foreach ($pairs as $pair) {
+                $attrs[strtolower($pair[1])] = html_entity_decode($pair[2], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            }
+            $tags[] = $attrs;
+        }
+        return $tags;
     }
 
     // Get a web page or API response as text, or null if it can't be fetched
@@ -1230,6 +1347,16 @@ class ZipBuilder
             $lines[] = '  text was taken from the book on Pressbooks (' . $p->bookUrl . ').';
             $lines[] = '  Links to the book\'s own pages point to the converted pages; review each';
             $lines[] = '  section\'s own page, as other content may differ from the export.';
+        }
+
+        // Videos and other embeds the Pressbooks export left out (see fetchLeftOutEmbeds())
+        if ($this->embedsFetched) {
+            $lines[] = '';
+            $lines[] = 'Videos Not in the Export';
+            $lines[] = '------------------------';
+            $lines[] = '  The Pressbooks export left out ' . $this->embedsFetched . ' video(s) or other embeds, so their';
+            $lines[] = '  addresses were taken from the book on Pressbooks (' . $p->bookUrl . '),';
+            $lines[] = '  and they are embedded in the converted pages.';
         }
 
         $lines[] = '';

@@ -25,6 +25,7 @@ class ContentConverter
 
     private array        $glossaryKeys     = []; // termKey() => the Glossary's term
     private array        $termPlaceholders = []; // %%TERMn%% => [term]…[/term], for the page being converted
+    private array        $leftOutEmbeds    = []; // a left-out embed's link back to the book => the embed's address
     private int          $termCount        = 0;
 
     public function __construct(array $linkMap, bool $figureHtml = true, bool $embedH5p = false, bool $portableMarkdown = false)
@@ -335,7 +336,24 @@ class ContentConverter
             // the item's title, if Pressbooks gives one (used for a YouTube embed's title, and as the link's text)
             $title  = $firstA ? $firstA->getAttribute('title') : '';
 
+            // the embed's own address, when it could be fetched from the book (see setLeftOutEmbeds())
+            $embedSrc = $firstA ? ($this->leftOutEmbeds[$firstA->getAttribute('data-url')] ?? null) : null;
+            if ($embedSrc && !preg_match('/youtube(?:-nocookie)?\.com\/embed\//', $embedSrc)) {
+                // another kind of embed (such as Vimeo): its own iframe, which Grav and Docsify both show
+                $titleAttr = htmlspecialchars($title !== '' ? $title : 'Embedded content', ENT_QUOTES);
+                $iframe    = '<iframe width="560" height="315" src="' . htmlspecialchars($embedSrc, ENT_QUOTES) . '" title="'
+                           . $titleAttr . '" frameborder="0" allowfullscreen></iframe>';
+                // its own paragraph, so the text after it starts on a new line
+                $para = $dom->createElement('p');
+                $para->appendChild($dom->createTextNode($iframe));
+                $div->parentNode->replaceChild($para, $div);
+                continue;
+            }
+
             $ytId = null;
+            if ($embedSrc && preg_match('/youtube(?:-nocookie)?\.com\/embed\/([A-Za-z0-9_-]+)/', $embedSrc, $m)) {
+                $ytId = $m[1];
+            }
             foreach ($xpath->query('.//a[@href]', $div) as $a) {
                 $href = $a->getAttribute('href') ?: $a->getAttribute('data-url') ?: '';
                 if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]+)/', $href, $m)) {
@@ -348,7 +366,10 @@ class ContentConverter
                 $sc = $this->portableMarkdown
                     ? $this->youtubeIframe($ytId, $title) . "\n"
                     : "[youtube]https://www.youtube.com/watch?v={$ytId}[/youtube]\n";
-                $div->parentNode->replaceChild($dom->createTextNode($sc), $div);
+                // its own paragraph, so the text after it starts on a new line
+                $para = $dom->createElement('p');
+                $para->appendChild($dom->createTextNode(trim($sc)));
+                $div->parentNode->replaceChild($para, $div);
             } elseif ($firstA) {
                 $url = $firstA->getAttribute('data-url') ?: $firstA->getAttribute('href');
                 if ($url && strpos($url, '#') !== 0) {
@@ -968,6 +989,13 @@ class ContentConverter
         }
         $holder->parentNode->insertBefore($line, $holder);
         $this->tableCaptions++;
+    }
+
+    // Videos and other embeds the export left out, fetched from the book (see ZipBuilder::fetchLeftOutEmbeds()),
+    // so they're embedded in place of their link back to the book
+    public function setLeftOutEmbeds(array $embeds): void
+    {
+        $this->leftOutEmbeds = $embeds;
     }
 
     // The book's Glossary terms (Grav destinations), so glossary terms in the text can be linked to them
