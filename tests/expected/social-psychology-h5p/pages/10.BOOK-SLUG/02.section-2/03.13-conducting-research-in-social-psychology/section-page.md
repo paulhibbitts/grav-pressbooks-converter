@@ -30,7 +30,7 @@ Read through each finding, and decide if you think the research evidence shows t
 - Punching a pillow or screaming out loud is a good way to reduce frustration and aggressive tendencies.
 - People pull harder in a tug-of-war when they’re pulling alone than when pulling in a group.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=1"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=1" title="Chapter 1 - Drag the Words - Classic Findings in Social Psychology"]
 
 [details summary="Text version of: Chapter 1 Drag The Words – Classic Findings In Social Psychology"]
 **H5P: TEST YOUR LEARNING: CHAPTER 1 DRAG THE WORDS – CLASSIC FINDINGS IN SOCIAL PSYCHOLOGY**
@@ -103,11 +103,11 @@ Table: Table 1.3 Examples of Operational Definitions of Conceptual Variables tha
 
 | Conceptual variable | Operational definitions |
 |---|---|
-| Aggression | - Number of seconds taken to honk the horn at the car ahead after a stoplight turns green - Number of presses of a button that administers shock to another student |
-| Interpersonal attraction | - Number of millimeters of pupil dilation when one person looks at another - Number of times that a person looks at another person |
-| Altruism | - Number of hours of volunteering per week that a person engages in - Number of pieces of paper a person helps another pick up |
-| Group-decision making skills | - Number of seconds in which a group correctly solves a problem - Number of groups able to correctly solve a group performance task |
-| Prejudice | - Number of groups able to correctly solve a group performance task - Number of negative words used in a creative story about another person |
+| Aggression | • Number of seconds taken to honk the horn at the car ahead after a stoplight turns green<br>• Number of presses of a button that administers shock to another student |
+| Interpersonal attraction | • Number of millimeters of pupil dilation when one person looks at another<br>• Number of times that a person looks at another person |
+| Altruism | • Number of hours of volunteering per week that a person engages in<br>• Number of pieces of paper a person helps another pick up |
+| Group-decision making skills | • Number of seconds in which a group correctly solves a problem<br>• Number of groups able to correctly solve a group performance task |
+| Prejudice | • Number of groups able to correctly solve a group performance task<br>• Number of negative words used in a creative story about another person |
 
 ### Social Neuroscience: Measuring Social Responses in the Brain
 
@@ -226,7 +226,7 @@ Despite the advantage of determining causation, experimental research designs do
 
 A second and perhaps more important limitation of experimental research designs is that some of the most interesting and important social variables cannot be experimentally manipulated. If we want to study the influence of the size of a mob on the destructiveness of its behavior, or to compare the personality characteristics of people who join suicide cults with those of people who do not join suicide cults, these relationships must be assessed using correlational designs because it is simply not possible to manipulate mob size or cult membership.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=2"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=2" title="Chapter 1 Drag the Words - Independent and Dependent Variables (HT)"]
 
 [details summary="Text version of: Chapter 1 Drag The Words – Independent And Dependent Variables"]
 **H5P: TEST YOUR LEARNING: CHAPTER 1 DRAG THE WORDS – INDEPENDENT AND DEPENDENT VARIABLES**
@@ -271,7 +271,7 @@ You may have wondered whether the participants in the video game study that we j
 
 In many cases, it is not possible in social psychology experiments to tell the research participants about the real hypotheses in the study, and so cover stories or other types of *deception* may be used. You can imagine, for instance, that if a researcher wanted to study racial prejudice, he or she could not simply tell the participants that this was the topic of the research because people may not want to admit that they are prejudiced, even if they really are. Although the participants are always told—through the process of *informed consent*—as much as is possible about the study before the study begins, they may nevertheless sometimes be deceived to some extent. At the end of every research project, however, participants should always receive a complete *debriefing* in which all relevant information is given, including the real hypothesis, the nature of any deception used, and how the data are going to be used.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=3"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=3" title="Chapter 1 - Drag the Words - Types of Research Design (HT)"]
 
 [details summary="Text version of: Chapter 1 Drag The Words – Types Of Research Design"]
 **H5P: TEST YOUR LEARNING: CHAPTER 1 DRAG THE WORDS – TYPES OF RESEARCH DESIGN**
@@ -309,7 +309,7 @@ The results of many studies may be combined and summarized using **meta-analysis
 
  It is important to realize that the understanding of social behavior that we gain by conducting research is a slow, gradual, and cumulative process. The research findings of one scientist or one experiment do not stand alone—no one study proves a theory or a research hypothesis. Rather, research is designed to build on, add to, and expand the existing research that has been conducted by other scientists. That is why whenever a scientist decides to conduct research, he or she first reads journal articles and book chapters describing existing research in the domain and then designs his or her research on the basis of the prior findings. The result of this cumulative process is that over time, research findings are used to create a systematic set of knowledge about social psychology (Figure 1.16, “Some Important Aspects of the Scientific Approach”).
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=4"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=4" title="Chapter 1 - True/False Quiz - (HT)"]
 
 [details summary="Text version of: Chapter 1 True Or False Quiz"]
 **H5P: Test your Learning: Chapter 1 True or False Quiz**

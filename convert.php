@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $uploadErrors = [
     UPLOAD_ERR_INI_SIZE   => 'File exceeds the server upload size limit. Add a .htaccess file with php_value upload_max_filesize 50M.',
     UPLOAD_ERR_FORM_SIZE  => 'File exceeds the form size limit.',
-    UPLOAD_ERR_PARTIAL    => 'File was only partially uploaded — please try again.',
+    UPLOAD_ERR_PARTIAL    => 'File was only partially uploaded – please try again.',
     UPLOAD_ERR_NO_FILE    => 'No file was selected.',
     UPLOAD_ERR_NO_TMP_DIR => 'Server is missing a temporary directory.',
     UPLOAD_ERR_CANT_WRITE => 'Server failed to write the upload to disk.',

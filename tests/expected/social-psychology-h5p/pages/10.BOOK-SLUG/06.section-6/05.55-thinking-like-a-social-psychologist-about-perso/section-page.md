@@ -12,7 +12,7 @@ With your new knowledge of person perception in hand, you may also think about y
 
 Finally, consider again the many ways that the processes of causal attribution guide your perceptions of yourself and influence your own behaviors and even your mental and physical health. Now that you can see how important your own thinking styles are, you might want to try to further improve them.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=16"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=16" title="Chapter 5 - True/False Quiz (HT)"]
 
 [details summary="Text version of: Chapter 5 True Or False Quiz"]
 **H5P: Test your Learning: Chapter 5 True or False Quiz**

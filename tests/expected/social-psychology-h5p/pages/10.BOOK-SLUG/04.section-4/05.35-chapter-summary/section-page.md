@@ -18,7 +18,7 @@ We use downward social comparison to create a positive image of ourselves throug
 
 The tendency to attempt to present a positive image to others and thereby attempt to increase our social status is known as self-presentation, and it is a basic and natural part of everyday life. In the longer term, our concern to present ourselves in particular ways can become a more ongoing reputation management project, and we may end up building different reputations with different audiences. Some people are high self-monitors, more able and willing to self-present than are other people, and will shift their behavior across situations and audiences more often than low self-monitors, who try to act more consistently with their internal values.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=13"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=13" title="Chapter 3 - Multiple Choice Quiz (HT)"]
 
 [details summary="Text version of: Chapter 3 Multiple-Choice Quiz"]
 **H5P: Test your Learning: Chapter 3 Multiple-Choice Quiz**

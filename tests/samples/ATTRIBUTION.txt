@@ -9,3 +9,27 @@ principles-of-social-psychology.html
   Principles of Social Psychology – 1st International H5P Edition
   by Rajiv Jhangiani and Hammond Tarry, BCcampus – CC BY-NC-SA 4.0
   https://opentextbc.ca/socialpsychology/
+
+presenter-toolkit.html
+  Presenter Toolkit: Creating and Facilitating an Accessible Presentation
+  by Rebecca Shortt, BCcampus – CC BY 4.0
+  https://opentextbc.ca/presentertoolkit/
+
+teaching-in-a-digital-age.html
+  Teaching in a Digital Age: Third Edition – General
+  by A.W. (Tony) Bates, Tony Bates Associates Ltd. – CC BY-NC 4.0
+  https://pressbooks.bccampus.ca/teachinginadigitalagev3m/
+
+graphic-design-and-print-production.html
+  Graphic Design and Print Production Fundamentals
+  by the Graphic Communications Open Textbook Collective, BCcampus – CC BY 4.0
+  https://opentextbc.ca/graphicdesign/
+
+working-group-guide.html
+  Working Group Guide: Establish, run, and sustain an open working group
+  by Lucas Wright and Krista Lambert, BCcampus – CC BY 4.0
+  https://opentextbc.ca/workinggroupguide/
+
+teaching-in-a-digital-age.html, graphic-design-and-print-production.html and working-group-guide.html are excerpts:
+each keeps only the few chapters the tests need (the full exports are kept outside this repo).
+The cover images (*-cover.jpg, *-cover.png) are small copies of each book's own cover, under the book's licence.

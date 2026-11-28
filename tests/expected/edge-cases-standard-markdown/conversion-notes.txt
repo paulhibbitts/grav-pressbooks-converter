@@ -26,18 +26,18 @@ Next Steps
 Conversion Settings
 -------------------
   Format:  Standard Markdown (no Grav-specific shortcodes)
-  Images:  kept as remote URLs — may break if source site goes offline
+  Images:  kept as remote URLs – may break if source site goes offline
   H5P:     linked to original source
   YouTube: embedded via a plain <iframe> (YouTube's own embed code)
 
 Known Limitations
 -----------------
-  - Footnotes/endnotes may appear as raw HTML — review in Grav admin
+  - Footnotes/endnotes may appear as raw HTML – review in Grav admin
   - Complex tables may need manual cleanup
   - Math/LaTeX rendering depends on your Grav MathJax plugin configuration
   - Other oEmbed content (Vimeo, Google Slides, etc.) links to the original Pressbooks page
   - Internal cross-reference links use Grav-style absolute paths (e.g. /section-2/some-page)
-    and will not resolve outside a Grav site — check/update these manually if publishing
+    and will not resolve outside a Grav site – check/update these manually if publishing
     to another platform
 
 Media Support

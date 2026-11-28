@@ -16,7 +16,7 @@ Finally, take a moment and consider your online behavior. How do you think it bo
 
 In sum, the self is the fundamental part of human psychology and will form the basis of all our analyses of social behavior. We have already seen this in previous topics, and will continue to see it going forward.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=12"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=12" title="Chapter 3 - True/False Quiz (HT)"]
 
 [details summary="Text version of: Chapter 3 True Or False Quiz"]
 **H5P: Test your Learning: Chapter 3 True or False Quiz**

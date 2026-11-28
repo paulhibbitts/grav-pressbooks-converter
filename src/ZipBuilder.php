@@ -1164,10 +1164,15 @@ class ZipBuilder
                 $this->lastFetchError = $http_response_header[0];
                 break;
             }
-            $this->lastFetchError = 'no response: ' . preg_replace('/^.*?\):\s*/', '', error_get_last()['message'] ?? '');
+            $message = error_get_last()['message'] ?? '';
+            $this->lastFetchError = 'no response: ' . preg_replace('/^.*?\):\s*/', '', $message);
+            // Only a certificate problem is worth trying again without verification (not, say, no web access)
+            if (!preg_match('/SSL|certificate/i', $message)) {
+                break;
+            }
             if ($verify && !$this->sslHintShown) {
                 $this->sslHintShown = true;
-                $this->warnings[]   = 'SSL certificate error — retrying without verification';
+                $this->warnings[]   = 'SSL certificate error – retrying without verification';
             }
         }
         return null;
@@ -1273,7 +1278,7 @@ class ZipBuilder
         }
         $lines[] = '  Format:  ' . $formatText;
         $lines[] = '  Images:  ' . ($this->skipImages
-            ? 'kept as remote URLs — may break if source site goes offline'
+            ? 'kept as remote URLs – may break if source site goes offline'
             : 'downloaded and bundled in ZIP')
             . ($this->captionedImagesAsMarkdown
                 ? ' (captioned images as a Markdown image with an italic caption, so they are downloaded too)'
@@ -1315,13 +1320,13 @@ class ZipBuilder
         $lines[] = '';
         $lines[] = 'Known Limitations';
         $lines[] = '-----------------';
-        $lines[] = '  - Footnotes/endnotes may appear as raw HTML — review in Grav admin';
+        $lines[] = '  - Footnotes/endnotes may appear as raw HTML – review in Grav admin';
         $lines[] = '  - Complex tables may need manual cleanup';
         $lines[] = '  - Math/LaTeX rendering depends on your Grav MathJax plugin configuration';
         $lines[] = '  - Other oEmbed content (Vimeo, Google Slides, etc.) links to the original Pressbooks page';
         if ($this->portableMarkdown) {
             $lines[] = '  - Internal cross-reference links use Grav-style absolute paths (e.g. /section-2/some-page)';
-            $lines[] = '    and will not resolve outside a Grav site — check/update these manually if publishing';
+            $lines[] = '    and will not resolve outside a Grav site – check/update these manually if publishing';
             $lines[] = '    to another platform';
         }
         // Tables the Pressbooks export left out (see noteTablePluginShortcodes())

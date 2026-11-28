@@ -272,7 +272,7 @@ class ContentConverter
                 $ph = '%%FN' . $idToIndex[$refId] . '%%';
                 $span->parentNode->replaceChild($dom->createTextNode($ph), $span);
             } elseif ($refId) {
-                $this->warnings[] = "footnote ref \"$refId\" has no matching definition — citation dropped";
+                $this->warnings[] = "footnote ref \"$refId\" has no matching definition – citation dropped";
             }
         }
 

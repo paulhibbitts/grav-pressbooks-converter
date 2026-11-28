@@ -1,0 +1,52 @@
+Pressbooks Conversion Notes
+===========================
+Generated: DATE
+
+Book Metadata
+-------------
+  Title:   Teaching in a Digital Age: Third Edition - General
+  Menu:    Teaching in a Digital Age (shorter label for the site's menu)
+  Authors: A.W. (Tony) Bates
+  License: CC BY-NC 4.0
+  Source:  https://pressbooks.bccampus.ca/tonybates/
+
+Structure
+---------
+  Front matter:   2 page(s)
+  Parts/sections: 6
+  Chapters:       7 page(s)
+  Back matter:    1 page(s)
+  Total:          10 page(s)
+
+Next Steps
+----------
+  1. Copy the book folder from inside the extracted pages folder into
+     your Grav Open Publishing Space site's user/pages/ directory
+  2. To change the book's menu label, edit menu: in the book's page
+     (in Admin: the book's page, Advanced tab, Menu)
+  3. Review this file for any warnings or manual fixes needed
+
+Conversion Settings
+-------------------
+  Format:  Grav Open Publishing Space (shortcodes + full frontmatter)
+  Images:  kept as remote URLs – may break if source site goes offline
+  H5P:     linked to original source
+  YouTube: embedded via [youtube] shortcode
+
+Glossary and Captions
+---------------------
+  Figure captions: 14, 12 already numbered in the book (such as "Figure 3.2")
+
+Known Limitations
+-----------------
+  - Footnotes/endnotes may appear as raw HTML – review in Grav admin
+  - Complex tables may need manual cleanup
+  - Math/LaTeX rendering depends on your Grav MathJax plugin configuration
+  - Other oEmbed content (Vimeo, Google Slides, etc.) links to the original Pressbooks page
+
+Media Support
+-------------
+  Grav Open Publishing Space supports embedded video, audio, and H5P activities,
+  but converted Pressbooks content may contain links to these items rather
+  than actual embeds. Review each page and replace links with the appropriate
+  shortcode where needed (e.g. [h5p url="..."] for H5P activities).

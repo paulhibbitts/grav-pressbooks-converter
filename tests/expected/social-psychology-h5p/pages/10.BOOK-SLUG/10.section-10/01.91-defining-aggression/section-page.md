@@ -51,7 +51,7 @@ Cyberbullying can be directed at anyone, but lesbian, gay, bisexual, and transge
 
 Hinduja and Patchin (2009) found that youth who report being victims of cyberbullying experience a variety of stresses from it, including psychological disorders, alcohol use, and in extreme cases, suicide. In addition to its emotional toll, cyberbullying also negatively affects students’ participation in, and success at, school.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=18"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=18" title="Chapter 9 - Drag the Words - Which Type of Aggression? (HT)"]
 
 [details summary="Text version of: Chapter 9 Drag The Words – Which Type Of Aggression?"]
 **H5P: TEST YOUR LEARNING: CHAPTER 9 DRAG THE WORDS – WHICH TYPE OF AGGRESSION?**

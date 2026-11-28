@@ -64,4 +64,4 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
 ## References
 
-First Nations Education Steering Committee. (n.d.). First peoples principles of learning. Retrieved December 17, 2021, from http://www.fnesc.ca/first-peoples-principles-of-learning/![(opens in a new tab)](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2022/01/icons8-interface-32-e1644590373117.png)
+First Nations Education Steering Committee. (n.d.). First peoples principles of learning. Retrieved December 17, 2021, from http://www.fnesc.ca/first-peoples-principles-of-learning/

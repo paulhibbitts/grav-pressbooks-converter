@@ -22,7 +22,7 @@ Different individuals make different judgments about others, in part because the
 
 Causal attributions for our own behaviors have an important outcome on our mental and physical health. For example, whereas a negative attributional style has been linked to depression, a positive attributional style can act as a protective factor against it. Ultimately, finding a balance between positive and realistic explanations of our own behavior appears to be very important to our well-being.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=17"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=17" title="Chapter 5 - Multiple Choice Quiz (HT)"]
 
 [details summary="Text version of: Chapter 5 Multiple-Choice Quiz"]
 **H5P: Test your Learning: Chapter 5 Multiple-Choice Quiz**

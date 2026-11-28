@@ -8,7 +8,7 @@ You may want to keep in mind that solutions to conflict may frequently be integr
 
 You may find that you are now better able to use your social psychological knowledge to help reduce potentially dangerous situations of conflict. Social norms about morality and fairness lead us frequently to cooperate with others, but these principles may be undermined in conflict situations. Perhaps you will use your new knowledge to advocate for more cooperative positions regarding important social dilemmas, such as global warming and natural resource use. You can use the many approaches that help people cooperate to help you in this endeavor.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=24"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=24" title="Chapter 12 - True/False Quiz (HT)"]
 
 [details summary="Text version of: Chapter 12 True Or False Quiz"]
 **H5P: Test your Learning: Chapter 12 True or False Quiz**

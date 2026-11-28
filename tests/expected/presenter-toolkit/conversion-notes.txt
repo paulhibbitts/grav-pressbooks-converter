@@ -1,0 +1,49 @@
+Pressbooks Conversion Notes
+===========================
+Generated: DATE
+
+Book Metadata
+-------------
+  Title:   Presenter Toolkit
+  Authors: Rebecca Shortt
+  License: CC BY 4.0
+  Source:  https://opentextbc.ca/presentertoolkit/
+
+Structure
+---------
+  Front matter:   0 page(s)
+  Parts/sections: 3
+  Chapters:       3 page(s)
+  Back matter:    2 page(s)
+  Total:          5 page(s)
+
+Next Steps
+----------
+  1. Copy the book folder from inside the extracted pages folder into
+     your Grav Open Publishing Space site's user/pages/ directory
+  2. Review this file for any warnings or manual fixes needed
+
+Conversion Settings
+-------------------
+  Format:  Grav Open Publishing Space (shortcodes + full frontmatter)
+  Images:  kept as remote URLs – may break if source site goes offline
+  H5P:     linked to original source
+  YouTube: embedded via [youtube] shortcode
+
+Warnings
+--------
+  - 1 video(s) or other embeds left out of the export couldn't be fetched from https://opentextbc.ca/presentertoolkit/ (no response: Failed to open stream: no suitable wrapper could be found) – each links back to the book instead
+
+Known Limitations
+-----------------
+  - Footnotes/endnotes may appear as raw HTML – review in Grav admin
+  - Complex tables may need manual cleanup
+  - Math/LaTeX rendering depends on your Grav MathJax plugin configuration
+  - Other oEmbed content (Vimeo, Google Slides, etc.) links to the original Pressbooks page
+
+Media Support
+-------------
+  Grav Open Publishing Space supports embedded video, audio, and H5P activities,
+  but converted Pressbooks content may contain links to these items rather
+  than actual embeds. Review each page and replace links with the appropriate
+  shortcode where needed (e.g. [h5p url="..."] for H5P activities).

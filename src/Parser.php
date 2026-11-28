@@ -116,17 +116,17 @@ class Parser
         }
 
         if (!$this->bookTitle) {
-            $this->warnings[] = 'no book title found in metadata — using "Publication"';
+            $this->warnings[] = 'no book title found in metadata – using "Publication"';
             $this->bookTitle  = 'Publication';
         }
         if (empty($this->bookAuthors)) {
-            $this->warnings[] = 'no authors found in metadata — attribution block will be omitted';
+            $this->warnings[] = 'no authors found in metadata – attribution block will be omitted';
         }
         if (!$this->bookLicenseRaw) {
-            $this->warnings[] = 'no license found in metadata — license fields will be omitted';
+            $this->warnings[] = 'no license found in metadata – license fields will be omitted';
         } elseif (!isset(self::$licenseMap[$this->bookLicenseRaw])) {
             $raw = $this->bookLicenseRaw;
-            $this->warnings[] = "unknown license code \"$raw\" — license fields will be omitted";
+            $this->warnings[] = "unknown license code \"$raw\" – license fields will be omitted";
         } else {
             [$this->bookLicense, $this->bookLicenseUrl] = self::$licenseMap[$this->bookLicenseRaw];
         }

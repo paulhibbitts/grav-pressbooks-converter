@@ -74,7 +74,7 @@ In summary, covariation models predict that we will most likely make external at
 
 These predictions have generally been supported in studies of attribution, typically asking people to make attributions about a stranger’s behaviors in vignettes (Kassin, 1979). In studies in more naturalistic contexts, for example those we make about ourselves and others who we know well, many other factors will also affect the types of attributions that we make. These include our relationship to the person and our prior beliefs. For instance, our attributions toward our friends are often more favorable than those we make toward strangers (Campbell, Sedikides, Reeder, & Elliot, 2000). Also, in line with our discussions of schemas and social cogniton in Chapter 2, they are often consistent with the content of the schemas that are salient to us at the time (Lyon, Startup, & Bentall, 1999).
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=14"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=14" title="Chapter 5 - Fill in the Blanks Internal or External Attribution Case Study"]
 
 [details summary="Text version of: Chapter 5 Fill In The Blanks – Internal Or External Attribution Case Study"]
 **H5P: TEST YOUR LEARNING: CHAPTER 5 FILL IN THE BLANKS – INTERNAL OR EXTERNAL ATTRIBUTION CASE STUDY**

@@ -124,7 +124,7 @@ Furthermore, despite the many positive variables that relate to high self-esteem
 
 Baumeister and his colleagues concluded that programs designed to boost self-esteem should be used only in a limited way and should not be the only approach taken. Raising self-esteem will not make young people do better in school, obey the law, stay out of trouble, get along better with other people, or respect the rights of others. And these programs may even backfire if the increased self-esteem creates narcissism or conceit. Baumeister and his colleagues suggested that attempts to boost self-esteem should only be carried out as a reward for good behavior and worthy achievements, and not simply to try to make children feel better about themselves.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=10"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=10" title="Chapter 3 - Drag the Words - Outcomes of High Self-esteem? (HT)"]
 
 [details summary="Text version of: Chapter 3 Drag The Words – Outcomes Of High Self-Esteem?"]
 **H5P: TEST YOUR LEARNING: CHAPTER 3 DRAG THE WORDS – OUTCOMES OF HIGH SELF-ESTEEM?**

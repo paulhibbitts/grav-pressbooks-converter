@@ -82,7 +82,7 @@ Another outcome of viewing large amounts of violent material is [term]desensitiz
 
 In sum, continually viewing violence substantially changes how we think about and how our brains respond to the events that occur to us (Bartholow, Bushman, & Sestir, 2006). Frequent exposure to violence primes aggression and makes aggressive behavior more likely (Molitor & Hirsch, 1994). And viewing aggression frequently makes that aggression seem more normal and less negative. If we create for ourselves a world that contains a lot of violence, we become more distrustful and more likely to behave aggressively in response to conflict (Nabi & Sullivan, 2001).
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=19"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=19" title="Chapter 9 - Drag the Words - Video Games and Aggression (HT)"]
 
 [details summary="Text version of: Chapter 9 Drag The Words – Video Games And Aggression"]
 **H5P: TEST YOUR LEARNING: CHAPTER 9 DRAG THE WORDS – VIDEO GAMES AND AGGRESSION**

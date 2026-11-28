@@ -26,7 +26,7 @@ Our knowledge about aggression forms a foundation for potentially reducing viole
 
 This chapter has reviewed how social psychologists understand aggression. Hopefully, you now have a better understanding of the causes of aggression and may also work harder to try to prevent it—both in yourself and others.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=21"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=21" title="Chapter 9 - Multiple Choice Quiz (HT)"]
 
 [details summary="Text version of: Chapter 9 Multiple-Choice Quiz"]
 **H5P: Test your Learning: Chapter 9 Multiple-Choice Quiz**

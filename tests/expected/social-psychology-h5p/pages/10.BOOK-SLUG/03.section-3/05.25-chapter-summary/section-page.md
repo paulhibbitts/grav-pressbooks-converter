@@ -18,7 +18,7 @@ Cognitive accessibility refers to the extent to which knowledge is activated in 
 
 Ultimately, perhaps we can use our understanding of social cognition to understand more fully how we think accurately—but also sometimes inaccurately—about ourselves and others.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=9"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=9" title="Chapter 2 - Multiple Choice Quiz (HT)"]
 
 **H5P: TEST YOUR LEARNING: CHAPTER 2 MULTIPLE-CHOICE QUIZ**
 

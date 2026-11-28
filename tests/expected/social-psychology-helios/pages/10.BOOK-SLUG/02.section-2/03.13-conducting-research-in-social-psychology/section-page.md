@@ -103,11 +103,11 @@ Table: Table 1.3 Examples of Operational Definitions of Conceptual Variables tha
 
 | Conceptual variable | Operational definitions |
 |---|---|
-| Aggression | - Number of seconds taken to honk the horn at the car ahead after a stoplight turns green - Number of presses of a button that administers shock to another student |
-| Interpersonal attraction | - Number of millimeters of pupil dilation when one person looks at another - Number of times that a person looks at another person |
-| Altruism | - Number of hours of volunteering per week that a person engages in - Number of pieces of paper a person helps another pick up |
-| Group-decision making skills | - Number of seconds in which a group correctly solves a problem - Number of groups able to correctly solve a group performance task |
-| Prejudice | - Number of groups able to correctly solve a group performance task - Number of negative words used in a creative story about another person |
+| Aggression | • Number of seconds taken to honk the horn at the car ahead after a stoplight turns green<br>• Number of presses of a button that administers shock to another student |
+| Interpersonal attraction | • Number of millimeters of pupil dilation when one person looks at another<br>• Number of times that a person looks at another person |
+| Altruism | • Number of hours of volunteering per week that a person engages in<br>• Number of pieces of paper a person helps another pick up |
+| Group-decision making skills | • Number of seconds in which a group correctly solves a problem<br>• Number of groups able to correctly solve a group performance task |
+| Prejudice | • Number of groups able to correctly solve a group performance task<br>• Number of negative words used in a creative story about another person |
 
 ### Social Neuroscience: Measuring Social Responses in the Brain
 

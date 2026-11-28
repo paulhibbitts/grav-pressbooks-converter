@@ -35,6 +35,13 @@ $checks = [
     'social-psychology-h5p' => ['book' => 'principles-of-social-psychology.html', 'cover' => 'principles-of-social-psychology-cover.jpg', 'destination' => 'open-publishing', 'embedH5p' => true, 'portable' => false],
     // the Glossary section in Helios Open Reader's layout (folders and section labels)
     'social-psychology-helios' => ['book' => 'principles-of-social-psychology.html', 'destination' => 'helios', 'embedH5p' => false, 'portable' => false],
+    // four more real books, each with its own mix: shortcodes and link icons (Presenter Toolkit), left-out videos
+    // (Teaching in a Digital Age), tables, a glossary and front matter footnotes (Graphic Design), footnotes in
+    // chapters and appendices (Working Group Guide). All but Presenter Toolkit are excerpts – a few chapters each.
+    'presenter-toolkit' => ['book' => 'presenter-toolkit.html', 'cover' => 'presenter-toolkit-cover.png', 'destination' => 'open-publishing', 'embedH5p' => false, 'portable' => false],
+    'teaching-in-a-digital-age' => ['book' => 'teaching-in-a-digital-age.html', 'cover' => 'teaching-in-a-digital-age-cover.jpg', 'destination' => 'open-publishing', 'embedH5p' => false, 'portable' => false],
+    'graphic-design-and-print-production' => ['book' => 'graphic-design-and-print-production.html', 'cover' => 'graphic-design-and-print-production-cover.jpg', 'destination' => 'open-publishing', 'embedH5p' => false, 'portable' => false],
+    'working-group-guide' => ['book' => 'working-group-guide.html', 'cover' => 'working-group-guide-cover.png', 'destination' => 'open-publishing', 'embedH5p' => false, 'portable' => false],
     // a small made-up book with the glossary and caption cases the real books don't have
     'edge-cases' => ['book' => 'edge-cases.html', 'destination' => 'open-publishing', 'embedH5p' => false, 'portable' => false],
     // the same book as Standard Markdown: terms stay plain text and the Glossary stays a page

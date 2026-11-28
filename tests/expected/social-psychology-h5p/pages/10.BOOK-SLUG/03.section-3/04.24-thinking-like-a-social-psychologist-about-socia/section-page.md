@@ -14,7 +14,7 @@ Finally, think back once more on the story with which we opened this chapter. Ca
 
 We hope that this chapter has provided you with some new and useful ideas about how you and others form impressions and has reminded you how others are forming (potentially erroneous) impressions of you. Most important, perhaps you have learned to be more modest about your judgments. Please remember to consider the possibility that your judgments and decisions, no matter how right and accurate they feel to you, may simply be wrong.
 
-[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=8"]
+[h5p url="https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=8" title="Chapter 2 - True/False Quiz (HT)"]
 
 [details summary="Text version of: Chapter 2 True Of False Quiz"]
 **H5P: TEST YOUR LEARNING: CHAPTER 2 TRUE OF FALSE QUIZ**Try this quick true-false quiz to see how well you have remembered some key concepts from this chapter. You can check your answers as you go, or wait for overall feedback at the end. Good luck! 1. Social cognition is a topic that explores how we process and utilize information about our social worlds.

@@ -26,13 +26,13 @@ Next Steps
 Conversion Settings
 -------------------
   Format:  Grav Helios Open Reader (shortcodes + full frontmatter)
-  Images:  kept as remote URLs — may break if source site goes offline
+  Images:  kept as remote URLs – may break if source site goes offline
   H5P:     linked to original source
   YouTube: embedded via [youtube] shortcode
 
 Warnings
 --------
-  - SSL certificate error — retrying without verification
+  - 2 video(s) or other embeds left out of the export couldn't be fetched from https://opentextbc.ca/socialpsychology/ (no response: Failed to open stream: no suitable wrapper could be found) – each links back to the book instead
 
 Glossary and Captions
 ---------------------
@@ -73,7 +73,7 @@ Glossary and Captions
 
 Known Limitations
 -----------------
-  - Footnotes/endnotes may appear as raw HTML — review in Grav admin
+  - Footnotes/endnotes may appear as raw HTML – review in Grav admin
   - Complex tables may need manual cleanup
   - Math/LaTeX rendering depends on your Grav MathJax plugin configuration
   - Other oEmbed content (Vimeo, Google Slides, etc.) links to the original Pressbooks page
